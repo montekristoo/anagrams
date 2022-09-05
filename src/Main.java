@@ -12,22 +12,27 @@ public class Main {
     static Set<Set<String>> groupedAnagrams = new HashSet<>();
     static ArrayList<String> sortedWords = new ArrayList<>();
     public static void main(String[] args) throws IOException {
-
-        BufferedReader reader = new BufferedReader(new FileReader("src/input.txt"));
-        Random random = new Random();
         Instant start = Instant.now();
-        for (int i = 0; i < 1000000; i++) {
-            String word = wordGenerator();
-            words.add(word);
-            sortedWords.add(selectionSort(word));
-        }
+        generatingWords();
+        displayWords();
+        Instant end = Instant.now();
+        System.out.println("Duration with bubble sort: " + Duration.between(start, end));
+    }
+
+    private static void displayWords() {
         findAnagrams();
         groupedAnagrams.forEach((row) -> {
             row.forEach((value) -> System.out.print(value + " "));
             System.out.println();
         });
-        Instant end = Instant.now();
-        System.out.println("Duration with bubble sort: " + Duration.between(start, end));
+    }
+
+    private static void generatingWords() {
+        for (int i = 0; i < 1000000; i++) {
+            String word = wordGenerator();
+            words.add(word);
+            sortedWords.add(bubbleSort(word));
+        }
     }
 
     private static String wordGenerator() {
