@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -27,12 +24,14 @@ public class Main {
         });
     }
 
-    private static void generatingWords() {
-        for (int i = 0; i < 1000000; i++) {
-            String word = wordGenerator();
-            words.add(word);
-            sortedWords.add(selectionSort(word));
+    private static void generatingWords() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            words.add(line);
+            sortedWords.add(selectionSort(line));
         }
+        reader.close();
     }
 
     private static String wordGenerator() {
