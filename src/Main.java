@@ -31,7 +31,7 @@ public class Main {
         for (int i = 0; i < 1000000; i++) {
             String word = wordGenerator();
             words.add(word);
-            sortedWords.add(bubbleSort(word));
+            sortedWords.add(selectionSort(word));
         }
     }
 
