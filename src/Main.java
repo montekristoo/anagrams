@@ -16,16 +16,16 @@ public class Main {
         BufferedReader reader = new BufferedReader(new FileReader("src/input.txt"));
         Random random = new Random();
         Instant start = Instant.now();
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             String word = wordGenerator();
             words.add(word);
-            sortedWords.add(bubbleSort(word));
+            sortedWords.add(selectionSort(word));
         }
         findAnagrams();
-//        groupedAnagrams.forEach((row) -> {
-//            row.forEach((value) -> System.out.print(value + " "));
-//            System.out.println();
-//        });
+        groupedAnagrams.forEach((row) -> {
+            row.forEach((value) -> System.out.print(value + " "));
+            System.out.println();
+        });
         Instant end = Instant.now();
         System.out.println("Duration with bubble sort: " + Duration.between(start, end));
     }
