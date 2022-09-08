@@ -1,14 +1,9 @@
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.lang.System.out;
 import static java.lang.System.setOut;
@@ -22,21 +17,7 @@ public class Main {
     }
 
     static private void checkForAnagramWords() throws IOException {
-        HashMap<String, Set<String>> anagrams = new HashMap<>();
-        List<byte[]> wordsInBytes = new ArrayList<>();
-        FileChannel inChannel = new FileInputStream("input.txt").getChannel();
-        ByteBuffer buffer = ByteBuffer.allocateDirect(512);
-        Set<char[]> words = new HashSet<>();
-        while (inChannel.read(buffer) > 0) {
-            buffer.clear();
-        }
-        out.println(words);
-//        anagrams = lines.stream().collect(Collectors.groupingBy(w -> selectionSort(w)));
-//        anagrams.entrySet().removeIf(c -> c.getValue().size() <= 1);
-//        anagrams.forEach((k, v) -> {
-//            out.println(v);
-//        });
-//        out.println(anagrams.size());
+        WordsPartition.Partition("C:\\Users\\GDB-01\\Desktop\\input.txt");
     }
 
     public static String sorted(String word) {
